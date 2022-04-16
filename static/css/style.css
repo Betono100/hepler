@@ -49,6 +49,10 @@ body {
     color: #252525;
 }
 
+body.lock {
+    overflow: hidden;
+}
+
 @media (max-width:540px) {
 
     body>aside,
@@ -192,6 +196,7 @@ nav a {
     background-color: #eff1ff;
     box-shadow: 0px 0px 5px #bac1ffc7;
 }
+
 .hamburger {
     --size: 4rem;
     display: flex;
@@ -304,9 +309,30 @@ article>p+h6 {
     .article__content {
         padding: 10px;
     }
+
     .article__info {
         font-size: 14px;
     }
+}
+
+/* button login */
+.button__login {
+    padding: 12px 23px 12px 23px;
+    box-shadow: 0px 0px 3px #bac1ff52;
+    border-radius: 5px;
+    transition: 0.2s;
+    background-color: #D6DAFF;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.button__login:hover {
+    background-color: #eff1ff;
+    box-shadow: 0px 0px 5px #bac1ffc7;
+}
+
+.button-nav__login {
+    margin-top: 20px;
 }
 
 /* --------------------------------------- */
@@ -485,6 +511,7 @@ article>p+h6 {
     border-bottom: 1px solid #ebebeb;
     transition: 0.2s;
 }
+
 .accordion-header:hover {
     background: #f3f3f3;
 }
@@ -506,4 +533,102 @@ article>p+h6 {
 .accordion__link {
     color: #252525;
     font-size: 13px;
+}
+
+/* popup */
+.popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: all 0.5s ease 0s;
+}
+
+.popup:target {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup__area {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: default;
+}
+
+.popup__body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 10px;
+}
+
+.popup__content {
+    position: relative;
+    background-color: #fff;
+    color: #000;
+    max-width: 800px;
+    width: 300px;
+    padding: 30px;
+    border-radius: 5px;
+}
+
+.popup__close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+/* form */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 20px;
+}
+
+.login-form__username {
+    border: 1px solid #ebebeb;
+    padding: 5px 5px;
+    font-family: 'Montserrat', sans-serif;
+    color: #252525;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.login-form__password {
+    border: 1px solid #ebebeb;
+    padding: 5px 5px;
+    font-family: 'Montserrat', sans-serif;
+    color: #252525;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.login-form__button {
+    font-family: 'Montserrat', sans-serif;
+    padding: 5px 5px;
+    background: #9AA4FD;
+    border-radius: 5px;
+    color: #3a3a3a;
+    font-size: 16px;
+    box-shadow: 0px 0px 3px #bac1ff52;
+    transition: 0.2s;
+    background-color: #D6DAFF;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.login-form__button:hover {
+    background-color: #eff1ff;
+    box-shadow: 0px 0px 5px #bac1ffc7;
 }

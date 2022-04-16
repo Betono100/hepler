@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,25 +14,21 @@
 
     <nav class="aside__nav">
         <div class="nav__logo">Asistent</div>
-        {% for cat, sub in category.items()%}
+        
         <div class="accordion-group">
-            <h3 class="accordion-header default-close">{{cat}}</h3>
+            <h3 class="accordion-header default-close">FAQ Auth</h3>
             <div class="accordion-body">
                 <div class="accordion-group" data-multiple="true">
-                    {% for i in sub%}
-                    <h3 class="f20 accordion-header"><button href="" onclick="return_content('{{i}}')">{{i}}</button></h3>
-                    {% endfor%}
                 </div>
             </div>
         </div>
-        {% endfor%}
-        <div class="nav__button">
+        <!-- <div class="nav__button">
             <a href="" class="nav__script">Открыть скрипт</a>
-        </div>
-        <!-- кнопка -->
-        <!-- <div class="nav__button button-nav__login">
-            <a href="#popup" class="button__login popup-link">Войти</a>
         </div> -->
+        <!-- кнопка -->
+        <div class="nav__button button-nav__login">
+            <a href="#popup" class="button__login popup-link">Войти</a>
+        </div>
         <!-- --- -->
     </nav>
     <a href="#" id="sidenav-close" title="Close Menu" aria-label="Close Menu" onclick="window.history.back()"></a>
@@ -49,14 +46,13 @@
         </a>
 
         <!-- search -->
-        <div class="search-form">
-            <input type="search" value="" placeholder="Search" class="search-input" id="search_input">
-            <button type="submit" class="search-button" id="search_btn">
+        <!-- <form class="search-form">
+            <input type="search" value="" placeholder="Search" class="search-input">
+            <button type="submit" class="search-button">
                 <svg class="submit-button">
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#search"></use>
                 </svg>
-            </button>
-            
+            </button> -->
             <!-- <div class="search-option">
                 <div>
                     <input name="type" type="radio" value="type-criterion1" id="type-criterion1" checked="">
@@ -96,9 +92,9 @@
                     </label>
                 </div> -->
             </div>
-        </div>
-        <div style="float: right;" id="path_date"></div>
-        <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none">
+        </form>
+
+        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none">
             <symbol id="search" viewBox="0 0 32 32">
                 <path
                     d="M 19.5 3 C 14.26514 3 10 7.2651394 10 12.5 C 10 14.749977 10.810825 16.807458 12.125 18.4375 L 3.28125 27.28125 L 4.71875 28.71875 L 13.5625 19.875 C 15.192542 21.189175 17.250023 22 19.5 22 C 24.73486 22 29 17.73486 29 12.5 C 29 7.2651394 24.73486 3 19.5 3 z M 19.5 5 C 23.65398 5 27 8.3460198 27 12.5 C 27 16.65398 23.65398 20 19.5 20 C 15.34602 20 12 16.65398 12 12.5 C 12 8.3460198 15.34602 5 19.5 5 z" />
@@ -120,20 +116,19 @@
                     d="M 4 4 L 4 5 L 4 27 L 4 28 L 5 28 L 27 28 L 28 28 L 28 27 L 28 5 L 28 4 L 27 4 L 5 4 L 4 4 z M 6 6 L 26 6 L 26 26 L 6 26 L 6 6 z M 16 8.40625 L 13.6875 13.59375 L 8 14.1875 L 12.3125 18 L 11.09375 23.59375 L 16 20.6875 L 20.90625 23.59375 L 19.6875 18 L 24 14.1875 L 18.3125 13.59375 L 16 8.40625 z M 16 13.3125 L 16.5 14.40625 L 17 15.5 L 18.1875 15.59375 L 19.40625 15.6875 L 18.5 16.5 L 17.59375 17.3125 L 17.8125 18.40625 L 18.09375 19.59375 L 17 19 L 16 18.40625 L 15 19 L 14 19.59375 L 14.3125 18.40625 L 14.5 17.3125 L 13.59375 16.5 L 12.6875 15.6875 L 13.90625 15.59375 L 15.09375 15.5 L 15.59375 14.40625 L 16 13.3125 z" />
             </symbol>
         </svg>
-        <!-- ------------------------------------- -->
+        ------------------------------------- -->
 
     </header>
-    <article class="article__container">
-        <div style="float: right;" id="title"></div>
+    <!-- <article class="article__container">
         <div class="article__content">
-            <div class="article__info" id="article">
+            <div class="article__info">
                 Оператор, база данных поможет тебе корректно и правильно консультировать Клиентов по различным вопросам.
                 Здесь содержится вся необходимая информация о программе лизинга, правила и условия, а также ты можешь
                 ознакомиться к нововведениями (новости) и акциями нашей компании.
                 Удачи в работе!
             </div>
         </div>
-    </article>
+    </article> -->
 </main>
 
 <!-- popup login -->
@@ -179,10 +174,10 @@
     </div>
 </div>
 <!-- popup-end -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="{{url_for('static', filename='js/script.js')}}"></script>
-<script src="{{url_for('static', filename='js/content.js')}}"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script href="{{url_for('static', filename='js/script.js')}}">
+</script>
 <script>
     $(function () {
         $('.accordion-group').simpleAccordion();
@@ -272,8 +267,6 @@
         };
     }(jQuery, window, document));
 </script>
-
 </body>
-
 
 </html>
