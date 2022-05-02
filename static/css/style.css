@@ -244,7 +244,7 @@ article {
     gap: 2ch;
     background: #fff;
     background: var(--surface2);
-    padding: 2ch;
+    padding: 1.5ch;
     border-radius: 5px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
     min-height: 90vh;
@@ -287,31 +287,100 @@ article>p+h6 {
 }
 
 .article__container {
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     line-height: 160%;
 }
 
 .article__content {
-    padding: 30px;
-    border-radius: 5px;
-    background-color: #fff7f7;
-    box-shadow: inset 0px 0px 3px #bebebe, 0px 0px 1px rgb(255 255 255);
-    max-width: 800px;
+    padding: 10px;
+    width: 100%;
 }
 
 .article__info {
     font-size: 16px;
     text-align: center;
+    border-radius: 5px;
+    background-color: #fff7f7;
+    box-shadow: inset 0px 0px 3px #bebebe, 0px 0px 1px rgb(255 255 255);
+    padding: 5px;
 }
 
 @media (max-width: 630px) {
     .article__content {
-        padding: 10px;
+        padding: 5px;
     }
 
     .article__info {
         font-size: 14px;
+    }
+}
+
+
+.article__label {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.article__label-item {
+    border-radius: 5px;
+    background-color: #fff7f7;
+    box-shadow: inset 0px 0px 3px #bebebe, 0px 0px 1px rgb(255 255 255);
+    padding: 5px;
+}
+
+.article__label-title {
+    font-size: 20px;
+    font-weight: 500;
+    padding-bottom: 3px;
+}
+
+.article__label-item li a {
+    color: #252525;
+}
+
+.article__label-item li a:hover {
+    text-decoration: underline;
+}
+
+.article__title {
+    font-size: 34px;
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    border-bottom: 1px dotted #252525;
+    max-width: 900px;
+}
+
+.article__text {
+    padding-bottom: 10px;
+    max-width: 900px;
+    border-bottom: 1px dotted #252525;
+}
+
+.article__date {
+    font-size: 12px;
+    color: #5a6674;
+}
+
+@media (max-width: 630px) {
+    .article__label-title {
+        font-size: 18px;
+        font-weight: 500;
+        padding-bottom: 3px;
+    }
+
+    .article__label-item li a {
+        color: #252525;
+        font-size: 14px;
+    }
+
+    .article__title {
+        font-size: 26px;
+    }
+
+    .article__text {
+        font-size: 12px;
     }
 }
 

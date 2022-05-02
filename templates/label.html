@@ -29,7 +29,11 @@
         <div class="nav__button">
             <a href="" class="nav__script">Открыть скрипт</a>
         </div>
-       
+        <!-- кнопка -->
+        <!-- <div class="nav__button button-nav__login">
+            <a href="#popup" class="button__login popup-link">Войти</a>
+        </div> -->
+        <!-- --- -->
     </nav>
     <a href="#" id="sidenav-close" title="Close Menu" aria-label="Close Menu" onclick="window.history.back()"></a>
 
@@ -53,6 +57,46 @@
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#search"></use>
                 </svg>
             </button>
+            <!-- <div class="search-option">
+                <div>
+                    <input name="type" type="radio" value="type-criterion1" id="type-criterion1" checked="">
+                    <label for="type-criterion1">
+                        <svg class="edit-pen-title">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#criterion1"></use>
+                        </svg>
+                        <span>criterion1</span>
+                    </label>
+                </div>
+
+                <div>
+                    <input name="type" type="radio" value="type-criterion2" id="type-criterion2">
+                    <label for="type-criterion2">
+                        <svg class="edit-pen-title">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#criterion2"></use>
+                        </svg>
+                        <span>criterion2</span>
+                    </label>
+                </div>
+                <div>
+                    <input name="type" type="radio" value="type-criterion3" id="type-criterion3">
+                    <label for="type-criterion3">
+                        <svg class="edit-pen-title">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#criterion3"></use>
+                        </svg>
+                        <span>criterion3</span>
+                    </label>
+                </div>
+                <div>
+                    <input name="type" type="radio" value="type-criterion4" id="type-criterion4">
+                    <label for="type-criterion4">
+                        <svg class="edit-pen-title">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#criterion4"></use>
+                        </svg>
+                        <span>criterion4</span>
+                    </label>
+                </div>
+            </div>
+        </form> -->
 
         <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none">
             <symbol id="search" viewBox="0 0 32 32">
@@ -80,14 +124,20 @@
 
     </header>
     <article class="article__container" id="container">
-        <!-- <div class="article__content">
-            <div class="article__info">
-                Оператор, база данных поможет тебе корректно и правильно консультировать Клиентов по различным вопросам.
-                Здесь содержится вся необходимая информация о программе лизинга, правила и условия, а также ты можешь
-                ознакомиться к нововведениями (новости) и акциями нашей компании.
-                Удачи в работе!
-            </div>
-        </div> -->
+    <div class="article__content">
+    <div class="article__label">
+        <!-- отдельный итем списка статей -->
+        <div class="article__label-item">
+            <h3 class="article__label-title">{{sub}}</h3>
+            <ul>
+                {% for i in content %}
+                <li><a href="/content/{{i.id}}"> • {{i.title}} </a><br><span"> {{i.date}} </span></li>
+                {% endfor %}
+            </ul>
+        </div>
+</div>
+
+<!-- Просто вставить это в article__container -->
     </article>
 </main>
 
@@ -108,7 +158,8 @@
 <!-- popup-end -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script href="/static/js/script.js"></script>
+<script href="/static/js/script.js">
+</script>
 <script src="{{url_for('static', filename='js/content.js')}}"></script>
 <script>
     $(function () {

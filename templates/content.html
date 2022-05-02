@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -29,7 +30,6 @@
         <div class="nav__button">
             <a href="" class="nav__script">Открыть скрипт</a>
         </div>
-       
     </nav>
     <a href="#" id="sidenav-close" title="Close Menu" aria-label="Close Menu" onclick="window.history.back()"></a>
 
@@ -80,14 +80,13 @@
 
     </header>
     <article class="article__container" id="container">
-        <!-- <div class="article__content">
-            <div class="article__info">
-                Оператор, база данных поможет тебе корректно и правильно консультировать Клиентов по различным вопросам.
-                Здесь содержится вся необходимая информация о программе лизинга, правила и условия, а также ты можешь
-                ознакомиться к нововведениями (новости) и акциями нашей компании.
-                Удачи в работе!
-            </div>
-        </div> -->
+        <div class="article__content">
+            <h2 class="article__title">{{content.title}}</h2>
+            <div class="article__text">{{content.text}}</div>
+            <div class="article__date">{{content.date}}</div>
+            <div class="article__date">Вернуться: <a href="/label/{{content.category}}">{{content.category}}</a></div>
+        </div>
+    
     </article>
 </main>
 
@@ -108,7 +107,8 @@
 <!-- popup-end -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script href="/static/js/script.js"></script>
+<script href="/static/js/script.js">
+</script>
 <script src="{{url_for('static', filename='js/content.js')}}"></script>
 <script>
     $(function () {
