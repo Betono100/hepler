@@ -12,7 +12,8 @@
 <aside id="sidenav-open">
 
     <nav class="aside__nav">
-        <div class="nav__logo">Asistent</div>
+        <a href="{{ '/main' }}">
+        <div class="nav__logo">Asistent</div></a>
         {% for cat, sub in category.items()%}
         <div class="accordion-group">
             <h3 class="accordion-header default-close">{{cat}}</h3>
