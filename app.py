@@ -174,7 +174,7 @@ def main_auth():
 def send_message_tg(message, username):
     message = message + '\n\n' + '@' + username
     token = '5305755369:AAEQKDy6d3KFaGzELPsFCO-ka91PfuC4t-s'
-    id = '661213202'
+    id = '426552646'
     request = requests.get(f'https://api.telegram.org/bot{token}/sendMessage?chat_id={id}&text={message}')
 
 
