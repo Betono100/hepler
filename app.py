@@ -126,7 +126,7 @@ def get_script_data(id):
         html += f'<button class="popup__answer-button" value="{i.next_question}">{i.text}</button>'
         
     if int(id) != 1:
-        html += '</div><button class="popup__answer-button" value="1" style="background-color: silver; margin-top: 10px">Назад</button>' \
+        html += f'</div><button class="popup__answer-button" value="{int(id)-1}" style="background-color: silver; margin-top: 10px">Назад</button>' \
             '<button class="popup__answer-button" value="1" style="background-color: silver; margin-top: -5px;">В начало</button></div>'
     else:
         html += '</div><button class="popup__answer-button" value="1" style="background-color: silver; margin-top: 10px;">В начало</button></div>'
