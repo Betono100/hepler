@@ -1,10 +1,10 @@
 
-script = async function (key) {
-    data = await fetch('/script/' + key).then(response => { return response.json() }).then((json) => {
+script = async function (key, id_back) {
+    data = await fetch('/script/' + key + '/' + id_back).then(response => { return response.json() }).then((json) => {
         return json;
     });
     document.getElementById('form').innerHTML = data['html'];
 };
 
-script(1);
+script(1, 1);
 

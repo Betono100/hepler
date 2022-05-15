@@ -12,7 +12,7 @@ login_manager = LoginManager(app)
 
 
 app.config['SECRET_KEY'] = 'secret'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://user:Neet2001@localhost:3306/helper?charset=utf8mb4'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://user:2110@localhost:3306/helper?charset=utf8mb4'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -111,25 +111,22 @@ def main():
     return render_template('index.html', category=get_caregory())
 
 
-@app.route('/script/<string:id>')
-def get_script_data(id):
+@app.route('/script/<string:id>/<string:id_back>')
+def get_script_data(id, id_back):
     """Script logic"""
     question = Question.query.filter_by(id=id).first()
     answers = Answer.query.filter_by(question=id).all()
-    data = {}
-    data['question'] = {'text': question.text}
-    data['answers'] = [{'text': i.text, 'next': i.next_question}
-                       for i in answers]
 
-    html = f'<div class="popup__form"><div class="popup__question"><p id="question">{question.text}</p></div><div class="popup__answers">'
+    print(id)
+    html = f'<div class="popup__form"><div class="popup__question" value={id}><p id="question">{question.text}</p></div><div class="popup__answers">'
     for i in answers:
-        html += f'<button class="popup__answer-button" value="{i.next_question}">{i.text}</button>'
+        html += f'<button class="popup__answer-button" value="{i.next_question}" name={id}>{i.text}</button>'
         
     if int(id) != 1:
-        html += f'</div><button class="popup__answer-button" value="{int(id)-1}" style="background-color: silver; margin-top: 10px">Назад</button>' \
-            '<button class="popup__answer-button" value="1" style="background-color: silver; margin-top: -5px;">В начало</button></div>'
+        html += f'</div><button class="popup__answer-button" value="{int(id_back)}" name={id} style="background-color: silver; margin-top: 10px">Назад</button>' \
+            '<button class="popup__answer-button" value="1" name="1" style="background-color: silver; margin-top: -5px;">В начало</button></div>'
     else:
-        html += '</div><button class="popup__answer-button" value="1" style="background-color: silver; margin-top: 10px;">В начало</button></div>'
+        html += f'</div><button class="popup__answer-button" value="1" name="1" style="background-color: silver; margin-top: 10px;">В начало</button></div>'
 
     return jsonify({'html': html})
 
