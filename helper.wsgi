@@ -2,7 +2,7 @@
 import sys
 import logging
 logging.basicConfig(stream=sys.stderr)
-sys.path.insert(0,"/var/www/helper")
+sys.path.insert(0,"/var/www/hepler")
 
 from app import app as application
 application.secret_key = 'secret'

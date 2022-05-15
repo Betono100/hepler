@@ -1,7 +1,7 @@
 <VirtualHost *:80>
     ServerName web-bdheelpeer.ru
     ServerAdmin email@example.com
-    WSGIScriptAlias / /var/www/hepler/hepler.wsgi
+    WSGIScriptAlias / /var/www/hepler/helper.wsgi
     <Directory /var/www/hepler/>
         Order allow,deny
         Allow from all
