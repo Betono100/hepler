@@ -1,0 +1,17 @@
+<VirtualHost *:80>
+    ServerName web-bdheelpeer.ru
+    ServerAdmin email@example.com
+    WSGIScriptAlias / /var/www/hepler/hepler.wsgi
+    <Directory /var/www/hepler/>
+        Order allow,deny
+        Allow from all
+    </Directory>
+    Alias /static /var/www/hepler/static
+    <Directory /var/www/hepler/static/>
+        Order allow,deny
+        Allow from all
+    </Directory>
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    LogLevel warn
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
