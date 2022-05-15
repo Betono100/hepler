@@ -1,11 +1,12 @@
 class UserLogin():
 
     def fromDataBase(self, self_id, db):
-        self.__user = db
+        self.__user = db.query.filter_by(login=self_id).first()
         return self
 
     def create(self, user):
         self.__user = user
+        print(user)
         return self
 
     def is_authenticated(self):
@@ -15,4 +16,4 @@ class UserLogin():
     def is_anonymous(self):
         return False
     def get_id(self):
-        return str(self.__user)
+        return self.__user

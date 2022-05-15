@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/style.css">
 
-    <title>Document</title>
+    <title>Asistent</title>
 </head>
 
 <aside id="sidenav-open">
@@ -27,7 +27,7 @@
         </div>
         {% endfor%}
         <div class="nav__button">
-            <a href="" class="nav__script">Открыть скрипт</a>
+            <a href="#popup" class="nav__script">Открыть скрипт</a>
         </div>
         <!-- кнопка -->
         <!-- <div class="nav__button button-nav__login">
@@ -143,6 +143,46 @@
 
 <!-- popup -->
 <div id="popup" class="popup">
+    <div class="popup__body">
+        <div class="popup__content-form">
+            <a href="#" class="popup__close close-popup">&times;</a>
+            <div class="popup__form" id="form">
+                <div class="popup__question">
+                    <p>Какой-то вопрос Какой-то вопрос Какой-то вопрос Какой-то вопрос Какой-то вопрос Какой-то
+                        вопрос</p>
+                </div>
+                <div class="popup__answers" >
+                    <button class="popup__answer-button">Ответ 1</button>
+                    <button class="popup__answer-button">Ответ 2</button>
+                    <button class="popup__answer-button">Ответ 3</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- popup-end -->
+
+
+<!-- popup -->
+<div id="popup-what" class="popup">
+    <div class="popup__body">
+        <div class="popup__content-what">
+            <a href="#" class="popup__close close-popup">&times;</a>
+            <form class="popup__form" method="post" action="{{ '/send_message' }}">
+                <div class="popup__question-what">Что вы хотите спросить?
+                </div>
+                <div class="popup__answers">
+                    <textarea type="text" id="message" name="message" rows="5"></textarea>
+                    <button type="submit" class="popup__answer-button">Отправить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- popup-end -->
+
+<!-- popup -->
+<div id="popup" class="popup">
     <a href="#" class="popup__area"></a>
     <div class="popup__body">
         <div class="popup__content">
@@ -160,7 +200,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script href="/static/js/script.js">
 </script>
+
+<!-- кнопка для вызова помощи -->
+<a href="#popup-what" class="what popup-link">Нужна помощь?</a>
 <script src="{{url_for('static', filename='js/content.js')}}"></script>
+<script src="/static/js/script_.js"></script>
+<script src="{{url_for('static', filename='js/button_detect.js')}}"></script>
 <script>
     $(function () {
         $('.accordion-group').simpleAccordion();

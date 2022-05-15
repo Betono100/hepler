@@ -6,3 +6,4 @@ search_btn.onclick = async function () {
     });
     document.getElementById('container').innerHTML = data['html'];
 }
+

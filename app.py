@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, redirect, make_response, session, flash, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, login_user, login_required
-from helper.UserLogin import UserLogin
+from flask_login import LoginManager, login_user, login_required, current_user
+from UserLogin import UserLogin
+import requests
 import os
 import json
 import datetime
@@ -11,7 +12,7 @@ login_manager = LoginManager(app)
 
 
 app.config['SECRET_KEY'] = 'secret'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://user:2110@localhost:3306/helper?charset=utf8mb4'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://user:Neet2001@localhost:3306/helper?charset=utf8mb4'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -49,8 +50,24 @@ class Content(db.Model):
         "subcategories.category_name"))
     date = db.Column(db.DateTime(), default=datetime.datetime.now())
 
+# DB Model Question
+
+
+class Question(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    text = db.Column(db.TEXT(), nullable=False)
+
+# DB Model Qu
+
+
+class Answer(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    text = db.Column(db.TEXT(), nullable=False)
+    question = db.Column(db.Integer(), db.ForeignKey("question.id"))
+    next_question = db.Column(db.Integer(), db.ForeignKey("question.id"))
 
 # --- AUTHORIZATION ---
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -62,9 +79,9 @@ def auth():
     """Auth user"""
     if request.method == "POST":
         user_data = User.query.filter_by(login=request.form['login']).first()
-        print(user_data.password)
+        print(user_data)
         if user_data.password == request.form['password'] and user_data.login == request.form['login']:
-            user_login = UserLogin().create(user_data)
+            user_login = UserLogin().create(str(user_data.login))
             login_user(user_login)
 
             return redirect(url_for('main'))
@@ -94,15 +111,28 @@ def main():
     return render_template('index.html', category=get_caregory())
 
 
-# @app.route('/get_content/<string:category>')
-# def get_content_by_category(category):
-#     """GET CONTENTS BY CATEGOTY"""
-#     content = Content.query.filter_by(category=category).first()
-#     data_content = {}
-#     data_content[category] = {'title': content.title, 'text': content.text, 'date': content.date}
+@app.route('/script/<string:id>')
+def get_script_data(id):
+    """Script logic"""
+    question = Question.query.filter_by(id=id).first()
+    answers = Answer.query.filter_by(question=id).all()
+    data = {}
+    data['question'] = {'text': question.text}
+    data['answers'] = [{'text': i.text, 'next': i.next_question}
+                       for i in answers]
 
+    html = f'<div class="popup__form"><div class="popup__question"><p id="question">{question.text}</p></div><div class="popup__answers">'
+    for i in answers:
+        html += f'<button class="popup__answer-button" value="{i.next_question}">{i.text}</button>'
+        
+    if int(id) != 1:
+        html += '</div><button class="popup__answer-button" value="1" style="background-color: silver; margin-top: 10px">Назад</button>' \
+            '<button class="popup__answer-button" value="1" style="background-color: silver; margin-top: -5px;">В начало</button></div>'
+    else:
+        html += '</div><button class="popup__answer-button" value="1" style="background-color: silver; margin-top: 10px;">В начало</button></div>'
 
-#     return jsonify(data_content)
+    return jsonify({'html': html})
+
 
 @app.route('/label/<string:cat>')
 @login_required
@@ -123,6 +153,7 @@ def content(id_):
 @app.route('/get_content_text/<string:text_search>')
 def get_content_by_text(text_search):
     """GET CONTENTS BY TEXT"""
+
     content = Content.query.all()
     search_content = [i for i in content if text_search in i.text]
 
@@ -140,10 +171,33 @@ def main_auth():
 
     return render_template('auth.html', category=None)
 
+def send_message_tg(message, username):
+    message = message + '\n\n' + '@' + username
+    token = '5305755369:AAEQKDy6d3KFaGzELPsFCO-ka91PfuC4t-s'
+    id = '661213202'
+    request = requests.get(f'https://api.telegram.org/bot{token}/sendMessage?chat_id={id}&text={message}')
+
+
+@app.route('/send_message', methods=['POST', 'GET'])
+@login_required
+def send():
+    """Send message"""
+
+    if request.method == "POST":
+        user = current_user.get_id().login
+        message = request.form['message']
+        send_message_tg(message, user)
+
+        return redirect(url_for('main'))
+    # print(User.query.filter_by(login=current_user.get_id()).first())
+    
+    return render_template('index.html', category=get_caregory())
+
+
 
 if __name__ == '__main__':
     db.create_all()
     app.config['SESSION_TYPE'] = 'filesystem'
     app.config['JSON_AS_ASCII'] = False
-    app.run(debug=True, port=5001)
+    app.run(debug=True, port=5005)
     # Session(app)
